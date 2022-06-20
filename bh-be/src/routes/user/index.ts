@@ -111,33 +111,33 @@ UserRoutes.post(
       });
 
       if (isExist) {
-        const token = await jwt.sign(
-          {
-            id: isExist.id,
-            username: isExist.username,
-            role: isExist.role,
-          },
-          process.env.JWT_SECRET!,
-          {
-            expiresIn: "3h",
-          }
-        );
-
-        res.custom = {
-          status: 201,
-          body: {
-            status: true,
-            token,
-          },
-        };
-
-        return next();
-        // return res.status(400).json({
-        //   status: false,
-        //   error: {
-        //     message: "이미 존재하는 계정입니다.",
+        // const token = await jwt.sign(
+        //   {
+        //     id: isExist.id,
+        //     username: isExist.username,
+        //     role: isExist.role,
         //   },
-        // });
+        //   process.env.JWT_SECRET!,
+        //   {
+        //     expiresIn: "3h",
+        //   }
+        // );
+
+        // res.custom = {
+        //   status: 201,
+        //   body: {
+        //     status: true,
+        //     token,
+        //   },
+        // };
+
+        // return next();
+        return res.status(400).json({
+          status: false,
+          error: {
+            message: "이미 존재하는 계정입니다.",
+          },
+        });
       }
 
       body.password = await bcrypt.hash(body.password, 10);
