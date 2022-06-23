@@ -4,7 +4,7 @@
 
 ## Overview
 
-![Untitled](BEMS%20Human%20Data%20Management%20System%2073f40554b092484bbd695fedcc82ff5a/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/52296323/175191881-fa0e64e2-d3eb-4fc3-a724-a534070108c6.png)
 
 각 건물(Building), 호(Unit)단위로 센서를 설치하여 센서로부터 설치 구역에 대한 사람 관련 데이터(Human Data)를 수집한다. 수집한 데이터를 데이터베이스에 저장하고, **관리자에 의해 허용된 사용자들에 한해 수집한 데이터를 BEMS-HDMS API 호출을 통해 제공해주는 OPEN API Service 구축을 목표**로 한다.
 
