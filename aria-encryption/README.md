@@ -66,11 +66,11 @@ private static void doCrypt(
 
 Javascript 기반의 ARIA 암호화를 구현하기 위하여 Java로 짜여진 [ARIA.java](http://ARIA.java) 소스를 참고했다. 기존의 ARIA Source 자체가 Legacy 하게 잘 짜여져 있었기 때문에 Javascript와 Java의 변수 표기 방식만을 변경하면 됐었고, 문법적으로 객체지향의 요소인 접근제한자 등을 제공해주고, 변수의 자료형 Tracing이 가능한 Typescript를 사용했기 때문에 변환과정에서 큰 어려움을 겪지 않았다.
 
-![Untitled](ARIA%20Encryption%20915b11e85c0546fdb23c61cdc0da4220/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/52296323/175236904-e2c0a574-2cda-4b00-b72c-4cc3278fb565.png)
 
 > **Problem 1. 한글 Encoding**
 
-![Untitled](ARIA%20Encryption%20915b11e85c0546fdb23c61cdc0da4220/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/52296323/175236923-19dfe886-a8d9-469b-ae17-9de78dccf9b6.png)
 
 Java의 String 객체의 getBytes라는 메서드는 Unicode 기반의 글자에서도 잘 동작하도록 만들어져 있지만, JavaScript의 charCodeAt은 이름 그대로 character, 프로그래밍 관점에서 보면 ascii 기반의 code를 넘겨주기 때문에 unicode 기반의 buffer 형식과는 다른 형식이 반환되어 한글과 같은 유니코드 기반의 글자에서는 제대로 된 ARIA프로세스가 이루어지지 않는다.
 
@@ -84,11 +84,11 @@ new TextDecoder().decode(bytes);
 
 우리들의 Javascript도 이 문제를 알고 있는지 TextEncode, TextDecoder라는 유니코드 기반의 UIntArray 변환 내장 객체를 지원해준다. 이를 사용하여 문제를 해결했다.
 
-![Untitled](ARIA%20Encryption%20915b11e85c0546fdb23c61cdc0da4220/Untitled%202.png)
+![Untitled 2](https://user-images.githubusercontent.com/52296323/175236941-e07082cf-53ea-4129-a78c-067fb06e65c3.png)
 
 > **Problem 2. 128Bit 이상의 데이터 처리**
 
-![Untitled](ARIA%20Encryption%20915b11e85c0546fdb23c61cdc0da4220/Untitled%203.png)
+![Untitled 3](https://user-images.githubusercontent.com/52296323/175236963-cd973109-69ac-40d5-a36e-4c9f72b629a2.png)
 
 ARIA 암호화는 암호화 키 사이즈에 관련 없이 입 출력 데이터가 128Bit로 고정이 되어있다. KISA 에서 제공해주는 [ARIA.java](http://ARIA.java) 소스파일 또한 128Bit의 데이터 암호화 예제밖에 제공을 안해준다. 128Bit 이상의 데이터는 직접 구현을 진행해주어야 한다.
 
@@ -171,6 +171,6 @@ const decodedText = bytesToString(decodedByte, "unicode");
 
 **[ Result ]**
 
-![Untitled](ARIA%20Encryption%20915b11e85c0546fdb23c61cdc0da4220/Untitled%204.png)
+![Untitled 4](https://user-images.githubusercontent.com/52296323/175236981-d38c1c80-d9c7-4664-bfdf-c7bf49454c04.png)
 
 이렇게 구현된 Javascript 기반의 ARIA 암호화 모듈은 [Session Cert, 비대칭키를 활용한 대칭키 암호화 통신 확립(Establish) 프로세스에](https://github.com/formegusto/Session-Cert)서 **대칭키에 해당하는 부분에 쓰일 것** 이다.
