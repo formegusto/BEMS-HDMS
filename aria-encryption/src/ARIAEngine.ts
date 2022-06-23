@@ -811,10 +811,10 @@ class ARIAEngine {
   }
 
   public static ARIA_test() {
-    const plainText = "테스트";
+    const plainText = "테스트 입니다.";
 
     const p: Uint8Array = new Uint8Array(16);
-    const _p = stringToByte(plainText, "ascii");
+    const _p = stringToByte(plainText, "unicode");
     for (let i = 0; i < _p.length; i++) {
       p[i] = _p[i];
     }
@@ -840,11 +840,11 @@ class ARIAEngine {
     console.log("plaintext (buffer) :", this.printBlock(p));
     console.log();
     instance.encrypt(p, 0, c, 0);
-    console.log("ciphertext :", bytesToString(c, "ascii"));
+    console.log("ciphertext :", bytesToString(c, "unicode"));
     console.log("ciphertext (buffer) :", this.printBlock(c));
     console.log();
     instance.decrypt(c, 0, p, 0);
-    console.log("decrypted :", bytesToString(p, "ascii"));
+    console.log("decrypted :", bytesToString(p, "unicode"));
     console.log("decrypted (buffer) :", this.printBlock(p));
     console.log();
   }
