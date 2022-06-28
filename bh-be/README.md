@@ -4,7 +4,7 @@
 
 BEMS-HDMS Service에서 BackEnd Server와 데이터 통신을 진행하는 경로는 4가지로 구분할 수 있다.
 
-![Untitled](BEMS-HDMS%20Back-End%20dfbab3b0184847888782fd0a29c54012/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/52296323/176105915-ea138417-251a-4a22-99cf-2f16c7770792.png)
 
 1. **[ WebBrowser : BackEnd ]** Web Service 진행 경로
 2. **[ Open API Service Process ]**
@@ -20,7 +20,7 @@ BEMS-HDMS Service에서 BackEnd Server와 데이터 통신을 진행하는 경�
 
 **[ Express Middleware ]**
 
-![Untitled](BEMS-HDMS%20Back-End%20dfbab3b0184847888782fd0a29c54012/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/52296323/176105920-453133a6-f52f-4c61-972e-2cafdea938aa.png)
 
 사용자가 웹 브라우저에 접근하게 되면 다음과 같이 암호화통신을 위한 Session Cert Process를 진행하고 있다는 것을 알리는 Spinner가 나타난다. [Session Cert는 비대칭키를 활용한 대칭키 암호화 통신 확립 프로세스](https://github.com/formegusto/Session-Cert)로, BEMS-HDMS Service에서는 **비대칭키, AES를 활용한 대칭키, ARIA 암호화 통신 확립 프로세스**로 정의를 내릴 수가 있다.
 
@@ -30,15 +30,15 @@ app.use(decryptBody, Routes, encryptBody);
 
 Web Service, Open API, Sensor Data 송 수신을 진행하는 **모든 라우터의 API에 접근하기 이전에는 FrontEnd로 부터 보내온 암호화 데이터를 복호화하기 위한 decryptBody 함수모듈을, API 작업 수행 후에는 응답 데이터를 암호화하기 위한 encryptBody 함수 모듈을 양쪽으로 위치**시켜준다.
 
-![Untitled](BEMS-HDMS%20Back-End%20dfbab3b0184847888782fd0a29c54012/Untitled%202.png)
+![Untitled 2](https://user-images.githubusercontent.com/52296323/176105938-f1db60a2-91c3-434d-ac10-20d439780e73.png)
 
-![Untitled](BEMS-HDMS%20Back-End%20dfbab3b0184847888782fd0a29c54012/Untitled%203.png)
+![Untitled 3](https://user-images.githubusercontent.com/52296323/176105952-0a5979d0-c39c-4ddf-8659-3f2efc5c3530.png)
 
 추가적으로 [ Open API Service Process ], [ Sensor : BackEnd ] 의 통신 경로 상에서는 Session Cert의 방법이 아닌 다른 방법이 사용된다.
 
 - **Open API Service Process** - Service 에서는 사용자가 API 사용 요청을 하면, 관리자가 승인해주었을 때 Open API를 사용할 수 있으며, 이 때 API KEY가 발급이 된다. 이 **API KEY는 Open API 과정에서의 대칭키로 사용**이 된다. 이 또한 Session Cert가 적용되어 있는 WebBrowser와 BackEnd 사이에 넘어오는 데이터이기 때문에 통신 상에서 유출되지 않는 KEY 이다.
 
-![Untitled](BEMS-HDMS%20Back-End%20dfbab3b0184847888782fd0a29c54012/Untitled%204.png)
+<img width="1299" alt="Untitled 4" src="https://user-images.githubusercontent.com/52296323/176105972-a3ee94cd-b26f-46ef-b765-7958218891ee.png">
 
 [\* Console Service의 자세한 처리 과정은 Front-End Docs 에서](https://github.com/formegusto/BEMS-HDMS/tree/master/bh-fe)
 
@@ -62,7 +62,7 @@ username: {
 
 sequelize는 model을 정의할 때, 접근자 프로퍼티인 set(Database에 삽입되기 전)과 get(Database에서 조회 후)에 기능을 추가시킬 수 있다. 민감정보의 set에는 암호화 적용 문법, get에는 복호화 적용 문법을 작성해준다. **set과 get은 각 각 Database에 삽입되기 전과 Database에서 조회 후와 같은 상황, 오로지 응용 프로그램 단에서만 이루어지기 때문에 결과적으로 통신상에서는 암호화된 데이터만 보여지게 된다.**
 
-![Untitled](BEMS-HDMS%20Back-End%20dfbab3b0184847888782fd0a29c54012/Untitled%205.png)
+<img width="820" alt="Untitled 5" src="https://user-images.githubusercontent.com/52296323/176106010-a75c2ebc-75f2-45e0-af64-be91db41f5fe.png">
 
 ## ORM Development Strategy
 
