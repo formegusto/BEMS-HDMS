@@ -50,8 +50,8 @@ function SensorContainer(props: SensorContainerProps) {
 
       try {
         const result = await axios.post(
-          "http://115.95.190.115:3003/admin/bems-hdms",
-          // "http://localhost:8080/admin/bems-hdms",
+          // "http://115.95.190.115:3003/admin/bems-hdms",
+          "http://localhost:8080/admin/bems-hdms",
           // encBodyStr,
           requestJson,
           {
