@@ -174,4 +174,4 @@ const decodedText = bytesToString(decodedByte, "unicode");
 
 ![Untitled 4](https://user-images.githubusercontent.com/52296323/175236981-d38c1c80-d9c7-4664-bfdf-c7bf49454c04.png)
 
-이렇게 구현된 Javascript 기반의 ARIA 암호화 모듈은 [Session Cert, 비대칭키를 활용한 대칭키 암호화 통신 확립(Establish) 프로세스에](https://github.com/formegusto/Session-Cert)서 **대칭키에 해당하는 부분에 쓰일 것** 이다.
+이렇게 구현된 Javascript 기반의 ARIA 암호화 모듈은 [Session Cert, 비대칭키를 활용한 대칭키 암호화 통신 확립(Establish) 프로세스](https://github.com/formegusto/Session-Cert)에서 **대칭키에 해당하는 부분에 쓰일 것** 이다.
