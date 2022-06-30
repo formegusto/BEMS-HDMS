@@ -153,9 +153,10 @@ function Visualization({ sensors }: VisualProps) {
 
   return (
     <Wrap ref={refWrap} id="visuals-wrap">
-      {sensors.map((s) => (
-        <VisualItem key={s.id} {...s} />
-      ))}
+      {sensors.map((s) => {
+        const timeReports = s.timeReports.reverse();
+        return <VisualItem key={s.id} {...s} timeReports={timeReports} />;
+      })}
     </Wrap>
   );
 }
